@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>My Orders</h1>
+    <div class="flex flex-col gap-4">
+        <span>
+            Usuario
+        </span>
+        <span>
+            {{ order.user.username|title }}
+        </span>
+        <span>
+            Fecha de la orden
+        </span>
+        <span>
+            {{ order.order_date|date }}
+        </span>
+    </div>
+
+    {% for product_order in order.orderproduct_set.all %}
+        {{ product_order.product.name }}
+        {{ product_order.product.price }}
+    {% empty %}
+        <p>No products in this order</p>
+    {% endfor %}
+{% endblock content %}
+
+
