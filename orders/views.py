@@ -1,11 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, CreateView
+from django.views.generic import DetailView, CreateView
 
 from .models import Order
 from .forms import OrderProductForm
 from django.urls import reverse_lazy
 
-class MyOrderView(LoginRequiredMixin, ListView):
+class MyOrderView(LoginRequiredMixin, DetailView):
     model = Order
     template_name = 'orders/my_order.html'
     context_object_name = 'order'
