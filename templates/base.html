@@ -6,7 +6,7 @@
     <title>{% block title %}Mi sitio web{% endblock %}</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
+<body class="min-h-screen flex flex-col">
     <header>
         <nav>
             <ul>
@@ -22,9 +22,17 @@
             </ul>
         </nav>
     </header>
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto px-4 flex-grow">
         {% block content %}
         {% endblock %}
     </div>
+    <footer class="bg-gray-100 py-4 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-600">&copy; <span id="current-year"></span> Coffee Shop. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
