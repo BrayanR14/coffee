@@ -1,5 +1,5 @@
 un form
-<form method="post" action="{% url 'add_product' %}">    
+<form method="post" action="{% url 'list_product' %}">    
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Guardar</button>

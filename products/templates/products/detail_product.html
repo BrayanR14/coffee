@@ -8,18 +8,9 @@
         <!-- Product Image Section -->
         <div class="space-y-4">
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="{{ product.image.url }}" 
+                <img src="{{ product.photo.url }}" 
                      alt="{{ product.name }}" 
                      class="w-full h-[500px] object-cover">
-            </div>
-            <!-- Thumbnail Gallery -->
-            <div class="grid grid-cols-4 gap-4">
-                <div class="bg-white rounded-lg shadow cursor-pointer">
-                    <img src="{{ product.image.url }}" 
-                         alt="{{ product.name }}" 
-                         class="w-full h-24 object-cover rounded-lg">
-                </div>
-                <!-- Add more thumbnails here if available -->
             </div>
         </div>
 
