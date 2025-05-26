@@ -19,3 +19,7 @@ class ProductListView(generic.ListView):
     template_name = "products/list_product.html"
     context_object_name = "products"
 
+class ProductDetailView(generic.DetailView):
+    model = Product
+    template_name = "products/detail_product.html"
+    context_object_name = "product"
