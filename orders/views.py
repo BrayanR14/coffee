@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import DetailView, CreateView
+from django.views.generic import DetailView, CreateView, DeleteView
 
-from .models import Order
+from .models import Order, OrderProduct
 from .forms import OrderProductForm
 from django.urls import reverse_lazy
 
@@ -25,3 +25,9 @@ class CreateOrderProductView(LoginRequiredMixin, CreateView):
         form.instance.quantity = 1  
         form.save()
         return super().form_valid(form)
+
+class RemoveOrderProductView(LoginRequiredMixin, DeleteView):
+    model = OrderProduct
+    template_name = 'orders/remove_order_product.html'
+    success_url = reverse_lazy("my_order")
+
