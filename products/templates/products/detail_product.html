@@ -32,25 +32,9 @@
                 <p class="text-gray-600">{{ product.description }}</p>
             </div>
 
-            <!-- Product Features -->
-            <div class="space-y-4">
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-check-circle text-green-500"></i>
-                    <span class="text-gray-600">Café 100% Arábica</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-check-circle text-green-500"></i>
-                    <span class="text-gray-600">Tostado artesanal</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-check-circle text-green-500"></i>
-                    <span class="text-gray-600">Empaque sellado al vacío</span>
-                </div>
-            </div>
-
             <!-- Purchase Section -->
             <div class="space-y-6 pt-6 border-t border-gray-200">
-                <div class="flex items-center space-x-4">
+                <div class="flex flex-col items-center space-y-4">
                     <div class="flex items-center border border-gray-300 rounded-lg">
                         <button class="px-4 py-2 text-gray-600 hover:text-brown-600" onclick="decrementQuantity()">-</button>
                         <input type="number" 
@@ -60,11 +44,15 @@
                                class="w-16 text-center border-x border-gray-300 py-2 focus:outline-none">
                         <button class="px-4 py-2 text-gray-600 hover:text-brown-600" onclick="incrementQuantity()">+</button>
                     </div>
-                    <button onclick="addToCart()" 
-                            class="flex-1 bg-brown-600 text-white px-8 py-3 rounded-lg hover:bg-brown-700 transition duration-300 flex items-center justify-center space-x-2">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span>Agregar al Carrito</span>
-                    </button>
+                    <form action="{% url 'add_product' %}" method="post" class="w-full flex justify-center">
+                        {% csrf_token %}
+                        <input type="hidden" name="product" value="{{ product.id }}">
+                        <button
+                            class="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition duration-300 flex items-center justify-center space-x-2"
+                        >
+                            Agregar al pedido
+                        </button>
+                    </form>
                 </div>
             </div>
 

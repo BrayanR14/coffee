@@ -1,28 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>My Orders</h1>
-    <div class="flex flex-col gap-4">
-        <span>
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">My Orders</h1>
+    <div class="flex flex-col gap-2">
+        <span class="text-lg font-semibold text-gray-700">
             Usuario
         </span>
-        <span>
+        <span class="text-xl text-gray-900">
             {{ order.user.username|title }}
         </span>
-        <span>
+        <span class="text-lg font-semibold text-gray-700 mt-4">
             Fecha de la orden
         </span>
         <span>
             {{ order.order_date|date }}
         </span>
     </div>
-
-    {% for product_order in order.orderproduct_set.all %}
-        {{ product_order.product.name }}
-        {{ product_order.product.price }}
-    {% empty %}
+    <div class="space-y-4">
+        {% for product_order in order.orderproduct_set.all %}
+        <div class="bg-white rounded-lg shadow-md p-6 flex justify-between items-center">
+            <div>
+                <h2 class="text-xl font-bold text-gray-800">{{ product_order.product.name }}</h2>
+                <p class="text-lg text-gray-600">${{ product_order.product.price }}</p>
+            </div>
+            <form action="{% url 'remove_product' product_order.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300">
+                    X
+                </button>
+            </form>
+        </div>
+        {% empty %}
         <p>No products in this order</p>
-    {% endfor %}
+        {% endfor %}
+    </div>
+</div>
 {% endblock content %}
 
 
